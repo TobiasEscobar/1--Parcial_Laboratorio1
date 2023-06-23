@@ -2,6 +2,7 @@ import re
 import datetime
 import random
 import json
+import os
 from os import system
 system("cls")
 
@@ -147,7 +148,7 @@ def listar_personajes_por_habilidad(lista:list, habilidad:str)->list:
         mensaje = print(personajes_encontrados)
         return mensaje
     else:
-        mensaje_error = "Error. No existe esa habilidad. Pruebe poniendo su inicial en mayúscula o el nombre completo."
+        mensaje_error = print("Error. No existe esa habilidad. Pruebe poniendo su inicial en mayúscula o el nombre completo.")
         return mensaje_error
 
 #5. Jugar batalla: El usuario seleccionará un personaje. La máquina selecciona otro al azar. Gana la
@@ -245,9 +246,8 @@ def guardar_personajes_en_json(lista:list, raza:str, habilidad:str)->None:
     - Devuelve un mensaje en caso de no encontrar un personaje con los criterios ingresados.
     '''
     guardar_lista = []
-    lista_personaje = parser_guardar_archivo(lista)
     criterios_encontrados = False
-    for personaje in lista_personaje:
+    for personaje in lista:
         nombre = personaje['Nombre']
         razas = personaje['Raza']
         poder_de_ataque = personaje['Poder_de_ataque']
@@ -311,7 +311,8 @@ def mostrar_personajes(personajes:dict):
 def mostrar_personajes_guardados(lista_archivos):
     '''
     brief:
-    - Verifica que existan archivos Json guardados y utiliza dos funciones para leer su informacion y luego mostrarla en la consola.
+    - Verifica que existan archivos Json guardados y si tienen datos adentro, luego utiliza dos funciones 
+    para leer su informacion y luego mostrarla en la consola.
     param: 
     - lista_archivos: archivos Json en donde debe buscar su nombre y mostrar su informacion.
     return:
@@ -322,8 +323,11 @@ def mostrar_personajes_guardados(lista_archivos):
     else:
         for nombre_archivo in lista_archivos:
             print(f"\nArchivo: {nombre_archivo}\n")
-            personajes = leer_personajes_desde_json(nombre_archivo)
-        return mostrar_personajes(personajes)
+            if os.path.isfile(nombre_archivo):
+                personajes = leer_personajes_desde_json(nombre_archivo)
+                mostrar_personajes(personajes)
+            else:
+                print(f"El archivo {nombre_archivo} no existe.")
 
 #Requerimiento extra
 
@@ -430,7 +434,7 @@ def generar_codigo_personaje(personaje:dict)->str:
     poder_de_ataque = personaje["Poder_de_ataque"]
     id_personaje = personaje["ID"]
 
-    inicial_nombre = nombre[0]
+    inicial_nombre = nombre[0].upper()
     ganador = ""
     valor_mas_alto = max(poder_de_ataque, poder_de_pelea)
 
