@@ -2,7 +2,7 @@ from funciones_parcial01 import *
 from os import system
 system("cls")
 
-lista = parser_guardar_archivo("A-parcial01//DBZ.csv")
+lista = parser_guardar_archivo("DBZ.csv")
 
 #Utilizada para el case 6-7
 archivos_guardados = []
@@ -30,7 +30,7 @@ while seguir == True:
         case 6:
             ingresar_raza = input("Ingrese la raza del personaje: ")
             ingresar_habilidad = input("Ingrese la habilidad del personaje: ")
-            guardar_personajes_en_json("A-parcial01/DBZ.csv", ingresar_raza, ingresar_habilidad)
+            guardar_personajes_en_json("DBZ.csv", ingresar_raza, ingresar_habilidad)
             nombre_archivo = f"{ingresar_raza.replace(' ', '_')}_{ingresar_habilidad.replace(' ', '_')}.json"
             archivos_guardados.append(nombre_archivo)
         case 7:
