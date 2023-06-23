@@ -30,7 +30,7 @@ while seguir == True:
         case 6:
             ingresar_raza = input("Ingrese la raza del personaje: ")
             ingresar_habilidad = input("Ingrese la habilidad del personaje: ")
-            guardar_personajes_en_json("DBZ.csv", ingresar_raza, ingresar_habilidad)
+            guardar_personajes_en_json(lista, ingresar_raza, ingresar_habilidad)
             nombre_archivo = f"{ingresar_raza.replace(' ', '_')}_{ingresar_habilidad.replace(' ', '_')}.json"
             archivos_guardados.append(nombre_archivo)
         case 7:
