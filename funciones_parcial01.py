@@ -147,7 +147,7 @@ def listar_personajes_por_habilidad(lista:list, habilidad:str)->list:
         mensaje = print(personajes_encontrados)
         return mensaje
     else:
-        mensaje_error = "Error. No existe esa habilidad. Pruebe poniendo su inicial en mayúscula o el nombre completo."
+        mensaje_error = print("Error. No existe esa habilidad. Pruebe poniendo su inicial en mayúscula o el nombre completo.")
         return mensaje_error
 
 #5. Jugar batalla: El usuario seleccionará un personaje. La máquina selecciona otro al azar. Gana la
@@ -245,9 +245,8 @@ def guardar_personajes_en_json(lista:list, raza:str, habilidad:str)->None:
     - Devuelve un mensaje en caso de no encontrar un personaje con los criterios ingresados.
     '''
     guardar_lista = []
-    lista_personaje = parser_guardar_archivo(lista)
     criterios_encontrados = False
-    for personaje in lista_personaje:
+    for personaje in lista:
         nombre = personaje['Nombre']
         razas = personaje['Raza']
         poder_de_ataque = personaje['Poder_de_ataque']
